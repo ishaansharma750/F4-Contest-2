@@ -9,10 +9,9 @@ function App() {
 
   const [books,setBooks] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  
    useEffect(()=>{
     const handleSearch = async (queryyy) => {
-       
-       
       try {
         const response = await axios.get(
           `https://www.googleapis.com/books/v1/volumes?q=${queryyy}`

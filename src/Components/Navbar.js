@@ -17,6 +17,8 @@ function Navbar({ onSearch }) {
       e.preventDefault();
       onSearch({query});
     };
+
+    
   return (
     <nav className="navbar">
       <div className="log-div">

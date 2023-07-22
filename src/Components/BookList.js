@@ -1,14 +1,14 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 function BookList({ books }) {
-    const [showInfo,setShowInfo] = useState(null);
-    
+  const [showInfo, setShowInfo] = useState(null);
+
   function Book(book, index) {
     console.log(book);
-    
+
     return (
-        
-      <div className="Book-item" onClick={()=>setShowInfo({book})}  key={index}>
+
+      <div className="Book-item" onClick={() => setShowInfo({ book })} key={index}>
         <div className="book-image-div">
           <img
             src={book.book.volumeInfo.imageLinks.thumbnail}
@@ -24,21 +24,24 @@ function BookList({ books }) {
             <p>{book.book.volumeInfo.description}</p>
           </div>
           <div className="book-now-read">
-          <a href={book.book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">
-           <button className="now-read-btn">Now Read!</button>
-           </a>
+            <a href={book.book.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">
+              <button className="now-read-btn">Now Read!</button>
+            </a>
           </div>
         </div>
       </div>
     );
   }
+
+
+
   function OnClickShowBook(book, index) {
     const bok = book.book.book.book;
-    console.log(book.book.book.book,"bb");
-    
+    console.log(book.book.book.book, "bb");
+
     return (
-        
-      <div className="select-Book-item"   key={index}>
+
+      <div className="select-Book-item" key={index}>
         <div className="select-book-image-div">
           <img
             src={bok.volumeInfo.imageLinks.thumbnail}
@@ -58,18 +61,18 @@ function BookList({ books }) {
             <p className="margin0">{bok.volumeInfo.description}</p>
           </div>
 
-            <div className="info-box">
-                <div className="box-1">Avg Rating : {bok.volumeInfo.averageRating}</div>
-                <div className="box-2">Rating Count : {bok.volumeInfo.ratingsCount}</div>
-                <div className="box-3">Publisher : {bok.volumeInfo.publisher}</div>
-                <div className="box-4">Language : {bok.volumeInfo.language}</div>
-                <a href={bok.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">
-                    <button className="select-now-read-btn">Now Read!</button>
-                </a>
-                <a href={bok.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">
-                    <button className="select-now-read-btn">More Info!</button>
-                </a>
-            </div>
+          <div className="info-box">
+            <div className="box-1">Avg Rating : {bok.volumeInfo.averageRating}</div>
+            <div className="box-2">Rating Count : {bok.volumeInfo.ratingsCount}</div>
+            <div className="box-3">Publisher : {bok.volumeInfo.publisher}</div>
+            <div className="box-4">Language : {bok.volumeInfo.language}</div>
+            <a href={bok.volumeInfo.previewLink} target="_blank" rel="noopener noreferrer">
+              <button className="select-now-read-btn">Now Read!</button>
+            </a>
+            <a href={bok.volumeInfo.infoLink} target="_blank" rel="noopener noreferrer">
+              <button className="select-now-read-btn">More Info!</button>
+            </a>
+          </div>
           {/* <div className="select-book-now-read">
             <button className="select-now-read-btn">Now Read!</button>
             <button className="select-now-read-btn">More Info!</button>
@@ -80,49 +83,49 @@ function BookList({ books }) {
     );
   }
   function BookImage(book, index) {
-    let imgg =""
-    try{
-        imgg = book.book.volumeInfo.imageLinks.thumbnail; 
+    let imgg = ""
+    try {
+      imgg = book.book.volumeInfo.imageLinks.thumbnail;
     }
-    catch(error){
-        console.log(error,"errrrro")
-        
+    catch (error) {
+      console.log(error, "errrrro")
+
     }
-    
-    
+
+
     return (
-      <div className="only-book-image-div" onClick={()=>setShowInfo({book})} key={index}>
-            
-            <img
-            src={imgg}
-            alt="image"
-            className="only-book-image"
-            />
-            
-        
+      <div className="only-book-image-div" onClick={() => setShowInfo({ book })} key={index}>
+
+        <img
+          src={imgg}
+          alt="image"
+          className="only-book-image"
+        />
+
+
       </div>
     );
   }
   // console.log(books,"helllbooks")
   return (
     <>
-      {showInfo!=null? 
-      <div className="book-list">
-        <OnClickShowBook book={showInfo} index="1"/>
-      </div>
-      :
-      <div className="book-list">
-       {books.map((book, index) =>
-          index < 3 ? <Book book={book} index={index} /> : ""
-        )}
-      </div>
+      {showInfo != null ?
+        <div className="book-list">
+          <OnClickShowBook book={showInfo} index="1" />
+        </div>
+        :
+        <div className="book-list">
+          {books.map((book, index) =>
+            index < 3 ? <Book book={book} index={index} /> : ""
+          )}
+        </div>
       }
-      <h2 style={{marginLeft:"2%"}}>More Books</h2>
+      <h2 style={{ marginLeft: "2%" }}>More Books</h2>
       <div className="book-list-more">
         {books.map((book, index) =>
-           index >= 3 && 
-            <BookImage book={book} index={index} />
-          
+          index >= 3 &&
+          <BookImage book={book} index={index} />
+
         )}
       </div>
     </>
